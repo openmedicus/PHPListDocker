@@ -1,0 +1,14 @@
+[Unit]
+Description=PHPList container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --name=phplist -p 8080:80 -v /www/phplist/lists/config:/var/www/html/public_html/lists/config:rw phplist
+ExecStop=/usr/bin/docker stop -t 2 phplist
+ExecStopPost=/usr/bin/docker rm -f phplist
+
+[Install]
+WantedBy=default.target
+
