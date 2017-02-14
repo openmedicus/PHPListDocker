@@ -1,4 +1,4 @@
-VERSION = 3.2.7
+VERSION = 3.3.1
 
 all: build tag push
 
