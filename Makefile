@@ -1,6 +1,6 @@
-VERSION = 3.3.1
+VERSION = 3.3.3
 
-all: build tag push
+all: pull build tag push
 
 pull:
 	sudo docker pull openmedicus/centos-lamp:latest
@@ -8,11 +8,13 @@ pull:
 build:
 	sudo docker build -t phplist .
 
-push:
+tag:
 	sudo docker tag phplist openmedicus/phplist:$(VERSION)
-	sudo docker push openmedicus/phplist
 	sudo docker tag phplist openmedicus/phplist:latest
-	sudo docker push openmedicus/phplist
+
+push:
+	sudo docker push openmedicus/phplist:$(VERSION)
+	sudo docker push openmedicus/phplist:latest
 
 run:
 	sudo docker run -i -t phplist /bin/bash
