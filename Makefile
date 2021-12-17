@@ -1,10 +1,10 @@
-VERSION = 3.6.0
+VERSION = 3.6.6
 PHP_VERSION = 7.1
 
 all: pull build tag push
 
 pull:
-	podman pull openmedicus/centos-lamp:$(PHP_VERSION)
+	podman pull docker.io/openmedicus/centos-lamp:$(PHP_VERSION)
 
 build:
 	cp -f Dockerfile.in Dockerfile
@@ -14,11 +14,9 @@ build:
 
 tag:
 	podman tag phplist openmedicus/phplist:$(VERSION)
-	podman tag phplist openmedicus/phplist:latest
 
 push:
 	podman push openmedicus/phplist:$(VERSION)
-	podman push openmedicus/phplist:latest
 
 run:
 	podman run -i -t phplist /bin/bash
