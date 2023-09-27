@@ -1,4 +1,4 @@
-VERSION = 3.6.6
+VERSION = 3.6.13
 PHP_VERSION = 7.1
 
 all: pull build tag push
